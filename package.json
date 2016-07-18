@@ -1,0 +1,16 @@
+{
+  "name": "invoice",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zlargon <zlargon@icloud.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^0.20.0",
+    "co": "^4.6.0",
+    "isomorphic-fetch": "^2.2.1"
+  }
+}
