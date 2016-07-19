@@ -12,9 +12,10 @@
   "author": "zlargon <zlargon@icloud.com>",
   "license": "MIT",
   "dependencies": {
-    "normalize.css": "^4.2.0",
+    "material-ui": "^0.15.2",
     "react": "^15.2.1",
-    "react-dom": "^15.2.1"
+    "react-dom": "^15.2.1",
+    "react-tap-event-plugin": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
