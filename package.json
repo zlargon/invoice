@@ -5,13 +5,37 @@
   "main": "index.js",
   "scripts": {
     "update:data": "node scripts/update_data.js",
+    "start": "node server.js",
+    "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "zlargon <zlargon@icloud.com>",
   "license": "MIT",
   "dependencies": {
+    "normalize.css": "^4.2.0",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-react-hmre": "^1.1.1",
     "cheerio": "^0.20.0",
     "co": "^4.6.0",
-    "isomorphic-fetch": "^2.2.1"
+    "css-loader": "^0.23.1",
+    "eslint": "^3.1.1",
+    "eslint-plugin-react": "^5.2.2",
+    "express": "^4.14.0",
+    "json-loader": "^0.5.4",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "node-fetch": "^1.5.3",
+    "postcss-loader": "^0.9.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.12.1"
   }
 }
