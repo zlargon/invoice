@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "update:data": "node scripts/update_data.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "zlargon <zlargon@icloud.com>",
