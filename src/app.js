@@ -179,6 +179,7 @@ export default class App extends React.Component {
             <ListItem
               primaryText={Invoice.new.title}
               primaryTogglesNestedList={true}
+              initiallyOpen={true}
               leftCheckbox={
                 <Checkbox
                   checked={this.state.newInvoice}
