@@ -10,6 +10,22 @@ import Invoice from '../invoice.json';
 import InvoiceMap from '../lib/InvoiceMap';
 import './app.less';
 
+const KEY_CODE = {
+  ZERO:  48,
+  ONE:   49,
+  TWO:   50,
+  THREE: 51,
+  FOUR:  52,
+  FIVE:  53,
+  SIX:   54,
+  SEVEN: 55,
+  EIGHT: 56,
+  NINE:  57,
+  C:     67,
+  LEFT:  37,
+  SHIFT: 16
+};
+
 const invoiceInfo = item => ['super', 'special', 'first', 'addition'].map((value, index) =>
   <div
     key={value}
@@ -65,28 +81,7 @@ export default class App extends React.Component {
     this.newMap = InvoiceMap(Invoice.new);
 
     window.addEventListener('keyup', (e) => {
-      switch (e.keyCode) {
-        // 0 - 9
-        case 48: case 49: case 50: case 51: case 52:
-        case 53: case 54: case 55: case 56: case 57:
-          this.keyBoardHandler((e.keyCode - 48).toString());
-          return;
-
-        case 32: // space
-        case 67: // c
-          this.keyBoardHandler('clear');
-          return;
-
-        case 37: // ←
-        case 68: // d
-        case 46: // del
-          this.keyBoardHandler('del');
-          return;
-
-        case 9: // tab
-          this.setState({showAppBar: !this.state.showAppBar});
-          return;
-      }
+      this.keyBoardHandler(e.keyCode);
     }, false);
   }
 
@@ -108,21 +103,30 @@ export default class App extends React.Component {
     return this.state.newInvoice ? Invoice.new.title : Invoice.old.title;
   }
 
-  keyBoardHandler (value) {
+  keyBoardHandler (code) {
     let numbers;
-    switch (value) {
-      case '1': case '2': case '3': case '4': case '5':
-      case '6': case '7': case '8': case '9': case '0':
-        numbers = this.state.numbers.length >= 3 ? value : this.state.numbers + value;
+    switch (code) {
+      // 0 - 9
+      case KEY_CODE.ZERO:  case KEY_CODE.ONE:   case KEY_CODE.TWO:
+      case KEY_CODE.THREE: case KEY_CODE.FOUR:  case KEY_CODE.FIVE:
+      case KEY_CODE.SIX:   case KEY_CODE.SEVEN: case KEY_CODE.EIGHT:
+      case KEY_CODE.NINE:
+        numbers = (this.state.numbers.length >= 3 ? '' : this.state.numbers) + (code - 48);
         break;
 
-      case 'clear':
+      // C
+      case KEY_CODE.C:
         numbers = '';
         break;
 
-      case 'del':
+      // ←
+      case KEY_CODE.LEFT:
         numbers = this.state.numbers.slice(0, -1);
         break;
+
+      // shift
+      case KEY_CODE.SHIFT:
+        this.setState({showAppBar: !this.state.showAppBar});
 
       default:
         return;
@@ -221,74 +225,74 @@ export default class App extends React.Component {
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('1')}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.ONE)}
               label="1"
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('2')}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.TWO)}
               label="2"
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('3')}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.THREE)}
               label="3"
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('4')}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.FOUR)}
               label="4"
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('5')}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.FIVE)}
               label="5"
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('6')}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.SIX)}
               label="6"
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('7')}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.SEVEN)}
               label="7"
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('8')}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.EIGHT)}
               label="8"
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('9')}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.NINE)}
               label="9"
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('clear')}
-              label="Clear" primary={true}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.C)}
+              label="c" primary={true}
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('0')}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.ZERO)}
               label="0"
             />
             <Button
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler('del')}
-              label="Del" primary={true}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.LEFT)}
+              label="←" primary={true}
             />
           </div>
         </div>
