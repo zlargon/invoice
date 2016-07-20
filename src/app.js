@@ -7,18 +7,18 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Invoice from '../data.json';
 import './app.less';
 
-const invoiceInfo = item => ['特別獎', '特獎', '頭獎', '增開六獎'].map((value, index) =>
+const invoiceInfo = item => ['super', 'special', 'first', 'addtion'].map((value, index) =>
   <div
     key={value}
     style={{fontFamily: 'monospace'}}
   >
     {index !== 0 ? <br/> : null}
-    <div>{value}：</div>
+    <div>{item[value].name}：</div>
     {
-      item[value].map(s =>
-        <div key={s}>
-          <span>{s.slice(0, -3)}</span>
-          <span style={{color: 'red'}}>{s.slice(-3)}</span>
+      item[value].numbers.map(num =>
+        <div key={num}>
+          <span>{num.slice(0, -3)}</span>
+          <span style={{color: 'red'}}>{num.slice(-3)}</span>
         </div>
       )
     }
@@ -60,10 +60,10 @@ export default class App extends React.Component {
 
   getTitle () {
     if (this.state.newInvoice && this.state.oldInvoice) {
-      return Invoice[1]['月份'].slice(0, -3) + Invoice[0]['月份'].slice(-3);
+      return Invoice.old.title.slice(0, -3) + Invoice.new.title.slice(-3);
     }
 
-    return this.state.newInvoice ? Invoice[0]['月份'] : Invoice[1]['月份'];
+    return this.state.newInvoice ? Invoice.new.title : Invoice.old.title;
   }
 
   render() {
@@ -77,7 +77,7 @@ export default class App extends React.Component {
           <AppBar iconElementLeft={<div></div>}/>
           <List>
             <ListItem
-              primaryText={Invoice[0]['月份']}
+              primaryText={Invoice.new.title}
               primaryTogglesNestedList={true}
               leftCheckbox={
                 <Checkbox
@@ -86,12 +86,12 @@ export default class App extends React.Component {
                 />
               }
               nestedItems={[
-                <ListItem key="new" primaryText={invoiceInfo(Invoice[0])}/>
+                <ListItem key="new" primaryText={invoiceInfo(Invoice.new)}/>
               ]}
             />
 
             <ListItem
-              primaryText={Invoice[1]['月份']}
+              primaryText={Invoice.old.title}
               primaryTogglesNestedList={true}
               leftCheckbox={
                 <Checkbox
@@ -100,7 +100,7 @@ export default class App extends React.Component {
                 />
               }
               nestedItems={[
-                <ListItem key="old" primaryText={invoiceInfo(Invoice[1])}/>
+                <ListItem key="old" primaryText={invoiceInfo(Invoice.old)}/>
               ]}
             />
             <ListItem
