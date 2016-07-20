@@ -14,10 +14,10 @@ fi
 # build production bundle.js
 webpack -p
 
-# copy folder 'bundle.js' and 'index.html' to 'delopy'
+# copy to 'delopy'
 rm -rf deploy
 mkdir deploy
-cp index.html bundle.js favicon.ico deploy
+cp index.html bundle.js favicon.ico invoice.json deploy
 
 # modify index.html
 cd deploy
