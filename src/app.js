@@ -7,7 +7,7 @@ import Button from 'material-ui/RaisedButton';
 import Invoice from '../invoice.json';
 import './app.less';
 
-const invoiceInfo = item => ['super', 'special', 'first', 'addtion'].map((value, index) =>
+const invoiceInfo = item => ['super', 'special', 'first', 'addition'].map((value, index) =>
   <div
     key={value}
     style={{fontFamily: 'monospace'}}

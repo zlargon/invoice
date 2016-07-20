@@ -18,7 +18,7 @@
     "react-tap-event-plugin": "^1.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.10.4",
+    "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.11.1",
@@ -32,7 +32,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "postcss-loader": "^0.9.1",
-    "receipt-lottery-taiwan": "0.0.1",
+    "receipt-lottery-taiwan": "0.0.3",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
