@@ -178,8 +178,7 @@ export default class App extends React.Component {
               ]}
             />
             <ListItem
-              primaryText='財政部稅務入口網'
-              onTouchTap={() => location.href = 'http://invoice.etax.nat.gov.tw/'}
+              primaryText={'更新時間：' + window.updated_time}
             />
           </List>
         </Drawer>
