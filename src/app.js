@@ -4,6 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import {List, ListItem} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import Dialog from 'material-ui/Dialog';
+import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/RaisedButton';
 import Invoice from '../invoice.json';
 import InvoiceMap from '../lib/InvoiceMap';
@@ -308,6 +309,14 @@ export default class App extends React.Component {
         </Dialog>
 
         <AppBar
+          iconElementRight={
+            <IconButton
+              iconClassName="muidocs-icon-custom-github"
+              href="https://github.com/zlargon/invoice"
+            >
+            </IconButton>
+          }
+          showMenuIconButton={true}
           title={this.getTitle()}
           titleStyle={{
             textAlign: 'center'
