@@ -3,6 +3,7 @@ import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import {List, ListItem} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
+import Dialog from 'material-ui/Dialog';
 import Button from 'material-ui/RaisedButton';
 import Invoice from '../invoice.json';
 import InvoiceMap from '../lib/InvoiceMap';
@@ -26,6 +27,14 @@ const invoiceInfo = item => ['super', 'special', 'first', 'addition'].map((value
   </div>
 );
 
+const winningMessage = (info) => <div style={{lineHeight: 1.5}}>{
+  info.map(prize => [
+    <div>{prize.period}</div>,
+    <div>{prize.award} <span style={{color: 'red'}}>{prize.number}</span></div>,
+    <div>{prize.message}</div>
+  ])
+}</div>;
+
 const styles = {
   keyBoard: {
     width: 100,
@@ -43,9 +52,12 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       numbers: '',
-      open: false,
+      showAppBar: false,
+      showDialog: false,
       newInvoice: true,
-      oldInvoice: false
+      oldInvoice: false,
+      dialogMessage: '',
+      tipMessage: '請輸入發票後三碼'
     };
 
     this.oldMap = InvoiceMap(Invoice.old);
@@ -90,18 +102,42 @@ export default class App extends React.Component {
         return;
     }
 
-    this.setState({numbers});
-    if (numbers.length < 3) {
+    if (numbers.length === 0) {
+      this.setState({
+        numbers,
+        tipMessage: '請輸入發票後三碼'
+      });
       return;
     }
 
-    if (this.state.newInvoice && this.newMap.hasOwnProperty(numbers)) {
-      console.log('中獎！');
-    } else if (this.state.oldInvoice && this.oldMap.hasOwnProperty(numbers)) {
-      console.log('中獎！')
-    } else {
-      console.log('沒中！');
+    if (numbers.length === 3) {
+      if (this.state.newInvoice && this.newMap.hasOwnProperty(numbers)) {
+        this.setState({
+          numbers,
+          showDialog: true,
+          dialogMessage: winningMessage(this.newMap[numbers]),
+          tipMessage: <div style={{color: 'red'}}>恭喜中獎！</div>
+        });
+      } else if (this.state.oldInvoice && this.oldMap.hasOwnProperty(numbers)) {
+        this.setState({
+          numbers,
+          showDialog: true,
+          dialogMessage: winningMessage(this.oldMap[numbers]),
+          tipMessage: <div style={{color: 'red'}}>恭喜中獎！</div>
+        });
+      } else {
+        this.setState({
+          numbers,
+          tipMessage: '沒中'
+        });
+      }
+      return;
     }
+
+    this.setState({
+      numbers,
+      tipMessage: ''
+    });
   }
 
   render() {
@@ -109,8 +145,8 @@ export default class App extends React.Component {
       <div>
         <Drawer
           docked={false}
-          open={this.state.open}
-          onRequestChange={(open) => this.setState({open})}
+          open={this.state.showAppBar}
+          onRequestChange={(showAppBar) => this.setState({showAppBar})}
         >
           <AppBar iconElementLeft={<div></div>}/>
           <List>
@@ -152,7 +188,7 @@ export default class App extends React.Component {
 
           <div className='invoice-monitor'>
             <div className='numbers'>{this.state.numbers}</div>
-            <div className='message'>請輸入發票後三碼</div>
+            <div className='tip-message'>{this.state.tipMessage}</div>
           </div>
 
           <div className='invoice-keyboard'>
@@ -231,6 +267,22 @@ export default class App extends React.Component {
           </div>
         </div>
 
+        <Dialog
+          title='恭喜中獎！'
+          actions={
+            <Button
+              label='OK'
+              primary={true}
+              onTouchTap={() => this.setState({showDialog: false})}
+            />
+          }
+          modal={false}
+          open={this.state.showDialog}
+          onRequestClose={() => this.setState({showDialog: false})}
+        >
+          {this.state.dialogMessage}
+        </Dialog>
+
         <AppBar
           title={this.getTitle()}
           titleStyle={{
@@ -241,7 +293,7 @@ export default class App extends React.Component {
             top: 0
           }}
           zDepth={0}
-          onLeftIconButtonTouchTap={() => this.setState({open: true})}
+          onLeftIconButtonTouchTap={() => this.setState({showAppBar: true})}
         />
       </div>
     );
