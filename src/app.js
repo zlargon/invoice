@@ -62,6 +62,31 @@ export default class App extends React.Component {
 
     this.oldMap = InvoiceMap(Invoice.old);
     this.newMap = InvoiceMap(Invoice.new);
+
+    window.addEventListener('keyup', (e) => {
+      switch (e.keyCode) {
+        // 0 - 9
+        case 48: case 49: case 50: case 51: case 52:
+        case 53: case 54: case 55: case 56: case 57:
+          this.keyBoardHandler((e.keyCode - 48).toString());
+          return;
+
+        case 32: // space
+        case 67: // c
+          this.keyBoardHandler('clear');
+          return;
+
+        case 37: // ←
+        case 68: // d
+        case 46: // del
+          this.keyBoardHandler('del');
+          return;
+
+        case 9: // tab
+          this.setState({showAppBar: !this.state.showAppBar});
+          return;
+      }
+    }, false);
   }
 
   selectMonth (invoice, value) {
