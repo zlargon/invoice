@@ -141,19 +141,28 @@ export default class App extends React.Component {
     }
 
     if (numbers.length === 3) {
+      const greetings = (
+        <div
+          style={{color: 'red', cursor: 'pointer'}}
+          onTouchTap={() => this.setState({showDialog: true})}
+        >
+          恭喜中獎！
+        </div>
+      );
+
       if (this.state.newInvoice && this.newMap.hasOwnProperty(numbers)) {
         this.setState({
           numbers,
           showDialog: true,
           dialogMessage: winningMessage(this.newMap[numbers]),
-          tipMessage: <div style={{color: 'red'}}>恭喜中獎！</div>
+          tipMessage: greetings
         });
       } else if (this.state.oldInvoice && this.oldMap.hasOwnProperty(numbers)) {
         this.setState({
           numbers,
           showDialog: true,
           dialogMessage: winningMessage(this.oldMap[numbers]),
-          tipMessage: <div style={{color: 'red'}}>恭喜中獎！</div>
+          tipMessage: greetings
         });
       } else {
         this.setState({
