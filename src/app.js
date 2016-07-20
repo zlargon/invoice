@@ -5,6 +5,7 @@ import {List, ListItem} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import Button from 'material-ui/RaisedButton';
 import Invoice from '../invoice.json';
+import InvoiceMap from '../lib/InvoiceMap';
 import './app.less';
 
 const invoiceInfo = item => ['super', 'special', 'first', 'addition'].map((value, index) =>
@@ -41,11 +42,14 @@ export default class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      numbers: '789',
+      numbers: '',
       open: false,
       newInvoice: true,
       oldInvoice: false
     };
+
+    this.oldMap = InvoiceMap(Invoice.old);
+    this.newMap = InvoiceMap(Invoice.new);
   }
 
   selectMonth (invoice, value) {
@@ -64,6 +68,40 @@ export default class App extends React.Component {
     }
 
     return this.state.newInvoice ? Invoice.new.title : Invoice.old.title;
+  }
+
+  keyBoardHandler (value) {
+    let numbers;
+    switch (value) {
+      case '1': case '2': case '3': case '4': case '5':
+      case '6': case '7': case '8': case '9': case '0':
+        numbers = this.state.numbers.length >= 3 ? value : this.state.numbers + value;
+        break;
+
+      case 'clear':
+        numbers = '';
+        break;
+
+      case 'del':
+        numbers = this.state.numbers.slice(0, -1);
+        break;
+
+      default:
+        return;
+    }
+
+    this.setState({numbers});
+    if (numbers.length < 3) {
+      return;
+    }
+
+    if (this.state.newInvoice && this.newMap.hasOwnProperty(numbers)) {
+      console.log('中獎！');
+    } else if (this.state.oldInvoice && this.oldMap.hasOwnProperty(numbers)) {
+      console.log('中獎！')
+    } else {
+      console.log('沒中！');
+    }
   }
 
   render() {
@@ -118,18 +156,78 @@ export default class App extends React.Component {
           </div>
 
           <div className='invoice-keyboard'>
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="1" />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="2" />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="3" />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="4" />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="5" />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="6" />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="7" />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="8" />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="9" />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="Clear" primary={true} />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="0" />
-            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="Del" primary={true} />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('1')}
+              label="1"
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('2')}
+              label="2"
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('3')}
+              label="3"
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('4')}
+              label="4"
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('5')}
+              label="5"
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('6')}
+              label="6"
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('7')}
+              label="7"
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('8')}
+              label="8"
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('9')}
+              label="9"
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('clear')}
+              label="Clear" primary={true}
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('0')}
+              label="0"
+            />
+            <Button
+              labelStyle={styles.keyBoardLable}
+              style={styles.keyBoard}
+              onTouchTap={() => this.keyBoardHandler('del')}
+              label="Del" primary={true}
+            />
           </div>
         </div>
 
