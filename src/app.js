@@ -3,8 +3,8 @@ import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import {List, ListItem} from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
-import RaisedButton from 'material-ui/RaisedButton';
-import Invoice from '../data.json';
+import Button from 'material-ui/RaisedButton';
+import Invoice from '../invoice.json';
 import './app.less';
 
 const invoiceInfo = item => ['super', 'special', 'first', 'addtion'].map((value, index) =>
@@ -118,18 +118,18 @@ export default class App extends React.Component {
           </div>
 
           <div className='invoice-keyboard'>
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="1" />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="2" />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="3" />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="4" />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="5" />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="6" />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="7" />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="8" />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="9" />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="Clear" primary={true} />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="0" />
-            <RaisedButton labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="Del" primary={true} />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="1" />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="2" />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="3" />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="4" />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="5" />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="6" />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="7" />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="8" />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="9" />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="Clear" primary={true} />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="0" />
+            <Button labelStyle={styles.keyBoardLable} style={styles.keyBoard} label="Del" primary={true} />
           </div>
         </div>
 

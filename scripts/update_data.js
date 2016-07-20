@@ -3,7 +3,7 @@ const path = require('path');
 const lottery = require('receipt-lottery-taiwan');
 
 let orgData = '';
-try { orgData = require('../data.json') } catch (e) {}
+try { orgData = require('../invoice.json') } catch (e) {}
 
 lottery.query((err, data) => {
   if (err) {
@@ -18,8 +18,8 @@ lottery.query((err, data) => {
   }
 
   fs.writeFileSync(
-    path.resolve(__dirname, '../data.json'),  // file path
-    jsonData                                  // data
+    path.resolve(__dirname, '../invoice.json'), // file path
+    jsonData                                    // data
   );
   console.log('data has been updated');
   console.log(jsonData);
