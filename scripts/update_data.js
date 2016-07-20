@@ -1,12 +1,16 @@
 const fs = require('fs');
 const path = require('path');
-const getInvoiceInfo = require('../lib/getInvoiceInfo');
+const lottery = require('receipt-lottery-taiwan');
 
 let orgData = '';
 try { orgData = require('../data.json') } catch (e) {}
 
-getInvoiceInfo()
-.then(data => {
+lottery.query((err, data) => {
+  if (err) {
+    console.error(err.stack);
+    return;
+  }
+
   const jsonData = JSON.stringify(data, null, 2);
   if (jsonData === JSON.stringify(orgData, null, 2)) {
     console.log('data has no changed');
@@ -19,5 +23,4 @@ getInvoiceInfo()
   );
   console.log('data has been updated');
   console.log(jsonData);
-})
-.catch(console.error);
+});
