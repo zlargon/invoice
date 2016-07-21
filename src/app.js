@@ -187,7 +187,10 @@ export default class App extends React.Component {
           open={this.state.showAppBar}
           onRequestChange={(showAppBar) => this.setState({showAppBar})}
         >
-          <AppBar iconElementLeft={<div></div>}/>
+          <AppBar
+            title='選擇月份'
+            iconElementLeft={<div></div>}
+          />
           <List>
             <ListItem
               primaryText={Invoice.new.title}
