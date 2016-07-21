@@ -1,12 +1,13 @@
 import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
-import {List, ListItem} from 'material-ui/List';
-import Checkbox from 'material-ui/Checkbox';
 import Dialog from 'material-ui/Dialog';
+import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
-import Button from 'material-ui/RaisedButton';
-import Invoice from '../invoice.json';
+import RaisedButton from 'material-ui/RaisedButton';
+import {List, ListItem} from 'material-ui/List';
+
+import Invoice from '../invoice';
 import InvoiceMap from '../lib/InvoiceMap';
 import './app.less';
 
@@ -234,73 +235,73 @@ export default class App extends React.Component {
           </div>
 
           <div className='invoice-keyboard'>
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.ONE)}
               label="1"
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.TWO)}
               label="2"
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.THREE)}
               label="3"
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.FOUR)}
               label="4"
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.FIVE)}
               label="5"
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.SIX)}
               label="6"
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.SEVEN)}
               label="7"
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.EIGHT)}
               label="8"
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.NINE)}
               label="9"
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.C)}
               label="c" primary={true}
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.ZERO)}
               label="0"
             />
-            <Button
+            <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
               onTouchTap={() => this.keyBoardHandler(KEY_CODE.LEFT)}
@@ -311,13 +312,6 @@ export default class App extends React.Component {
 
         <Dialog
           title='恭喜中獎！'
-          actions={
-            <Button
-              label='OK'
-              primary={true}
-              onTouchTap={() => this.setState({showDialog: false})}
-            />
-          }
           modal={false}
           open={this.state.showDialog}
           onRequestClose={() => this.setState({showDialog: false})}
