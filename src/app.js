@@ -23,6 +23,7 @@ const KEY_CODE = {
   EIGHT: 56,
   NINE:  57,
   C:     67,
+  DEL:   46,
   LEFT:  37,
   SHIFT: 16
 };
@@ -120,8 +121,9 @@ export default class App extends React.Component {
         numbers = '';
         break;
 
-      // ←
+      // ←, Delete
       case KEY_CODE.LEFT:
+      case KEY_CODE.DEL:
         numbers = this.state.numbers.slice(0, -1);
         break;
 
@@ -304,7 +306,7 @@ export default class App extends React.Component {
             <RaisedButton
               labelStyle={styles.keyBoardLable}
               style={styles.keyBoard}
-              onTouchTap={() => this.keyBoardHandler(KEY_CODE.LEFT)}
+              onTouchTap={() => this.keyBoardHandler(KEY_CODE.DEL)}
               label="←" primary={true}
             />
           </div>
