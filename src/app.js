@@ -130,7 +130,7 @@ export default class App extends React.Component {
       // shift
       case KEY_CODE.SHIFT:
         this.setState({showAppBar: !this.state.showAppBar});
-        break;
+        return;
 
       default:
         return;
